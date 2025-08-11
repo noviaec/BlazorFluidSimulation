@@ -1,0 +1,36 @@
+@page "/fluid"
+@rendermode InteractiveServer
+
+<PageTitle>Fluid Simulation</PageTitle>
+
+<div class="fluid-simulation">
+    <h3>Choose Simulation Environment</h3>
+    <FluidControls @bind-typeSelected="simType" />
+    <FluidRenderer />
+</div>
+<h4>@simType</h4>
+@code {
+    FluidSimulation fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+    FluidControls.SIM_TYPE simType;
+    protected override void OnParametersSet()
+    {
+        switch(simType)
+        {
+            case FluidControls.SIM_TYPE.Tank:
+                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                break;
+            case FluidControls.SIM_TYPE.WindTunnel:
+                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                break;
+            case FluidControls.SIM_TYPE.Paint:
+                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                break;
+            case FluidControls.SIM_TYPE.HiresTunnel:
+                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                break;
+        } 
+
+        
+    }
+
+}

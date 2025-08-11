@@ -1,0 +1,20 @@
+@* <button @onclick="() => Console.WriteLine(3)">Button</button> *@
+
+<button @onclick="(() => setUpSim(SIM_TYPE.Tank))">Tank</button>
+<button @onclick="(() => setUpSim(SIM_TYPE.WindTunnel))">Wind Tunnel</button>
+<button @onclick="(() => setUpSim(SIM_TYPE.Paint))">Paint</button>
+<button @onclick="(() => setUpSim(SIM_TYPE.HiresTunnel))">Hires Tunnel</button>
+
+@code {
+    public enum SIM_TYPE { Tank, WindTunnel, Paint, HiresTunnel }
+
+    [Parameter]
+    public SIM_TYPE typeSelected  { get; set;}
+    [Parameter]
+    public EventCallback<SIM_TYPE> typeSelectedChanged { get; set; }
+    private async Task setUpSim(SIM_TYPE type)
+    {
+        typeSelected = type;
+        await typeSelectedChanged.InvokeAsync(type); // notify parent
+    }
+}
