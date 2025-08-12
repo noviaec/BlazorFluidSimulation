@@ -74,7 +74,7 @@ public class FluidSimulation
         }
     }
 
-    // CellType determines if a ce
+    // CellType determines if a ce|
     public void setCellType(int gridX, int gridY, float type)
     {
         if (gridX < 0 || gridX >= gridWidth || gridY < 0 || gridY >= gridHeight)

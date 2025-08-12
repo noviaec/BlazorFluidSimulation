@@ -12,25 +12,54 @@
 @code {
     FluidSimulation fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
     FluidControls.SIM_TYPE simType;
+    FluidControls.SIM_TYPE lastSimType;
     protected override void OnParametersSet()
     {
-        switch(simType)
+        if (lastSimType == simType) return; // no change, skip setup
+        lastSimType = simType;
+        switch (simType)
         {
             case FluidControls.SIM_TYPE.Tank:
-                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                setupTankSimulation();
                 break;
             case FluidControls.SIM_TYPE.WindTunnel:
-                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                setupWindTunnelSimulation();
                 break;
             case FluidControls.SIM_TYPE.Paint:
-                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                setupPaintSimulation();
                 break;
             case FluidControls.SIM_TYPE.HiresTunnel:
-                fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
+                setupHiresTunnelSimulation();
                 break;
-        } 
+        }
 
-        
+
     }
 
-}
+    public void setupTankSimulation()
+    {
+        fluidSimulation.setCellSize(0.5f); // TODO: adjust cell size based on simulation type
+        fluidSimulation.setGridSize(10, 10);
+        fluidSimulation.setCellType(0, 0, 1.0f); // TODO: algo for setting cell types
+    }
+
+    public void setupWindTunnelSimulation()
+    {
+        fluidSimulation.setCellSize(0.5f); // TODO: adjust cell size based on simulation type
+        fluidSimulation.setGridSize(10, 10);
+        fluidSimulation.setCellType(0, 0, 1.0f); // TODO: algo for setting cell types
+    }
+
+    public void setupPaintSimulation()
+    {
+        fluidSimulation.setCellSize(0.5f); // TODO: adjust cell size based on simulation type
+        fluidSimulation.setGridSize(10, 10);
+        fluidSimulation.setCellType(0, 0, 1.0f); // TODO: algo for setting cell types
+    }
+
+    public void setupHiresTunnelSimulation()
+    {
+        fluidSimulation.setCellSize(0.5f); // TODO: adjust cell size based on simulation type
+        fluidSimulation.setGridSize(10, 10);
+        fluidSimulation.setCellType(0, 0, 1.0f); // TODO: algo for setting cell types
+    }
