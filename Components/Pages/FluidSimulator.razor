@@ -8,7 +8,7 @@
     <FluidControls @bind-typeSelected="simType" />
     <FluidRenderer />
 </div>
-<h4>@simType</h4>
+<h4>Current Simulation Type: @simType</h4>
 @code {
     FluidSimulation fluidSimulation = new FluidSimulation(2.2f, 10, 10, 10);
     FluidControls.SIM_TYPE simType;

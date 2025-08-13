@@ -76,3 +76,4 @@ C:\Users\Alex\Projects\Csharp\BlazorProjects\obj\Debug\net9.0\refint\BlazorProje
 C:\Users\Alex\Projects\Csharp\BlazorProjects\obj\Debug\net9.0\BlazorProjects.pdb
 C:\Users\Alex\Projects\Csharp\BlazorProjects\obj\Debug\net9.0\BlazorProjects.genruntimeconfig.cache
 C:\Users\Alex\Projects\Csharp\BlazorProjects\obj\Debug\net9.0\ref\BlazorProjects.dll
+C:\Users\Alex\Projects\Csharp\BlazorProjects\obj\Debug\net9.0\BlazorProjects.sourcelink.json

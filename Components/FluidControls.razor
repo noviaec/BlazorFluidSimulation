@@ -1,21 +1,23 @@
 @* <button @onclick="() => Console.WriteLine(3)">Button</button> *@
-
-<button @onclick="(() => setUpSim(SIM_TYPE.Tank))">Tank</button>
-<button @onclick="(() => setUpSim(SIM_TYPE.WindTunnel))">Wind Tunnel</button>
-<button @onclick="(() => setUpSim(SIM_TYPE.Paint))">Paint</button>
-<button @onclick="(() => setUpSim(SIM_TYPE.HiresTunnel))">Hires Tunnel</button>
-
-<InputCheckbox @bind-Value="showStreamLines">StreamLines</InputCheckbox>
-<InputCheckbox @bind-Value="showVelocities">Velocities</InputCheckbox>
-<InputCheckbox @bind-Value="showPressure">Pressure</InputCheckbox>
-<InputCheckbox @bind-Value="showSmoke">Smoke</InputCheckbox>
-<InputCheckbox @bind-Value="overRelaxation">Over Relaxation</InputCheckbox>
-
+<div class="d-grid gap-2 " style="grid-template-columns: repeat(2, 1fr); width:25%;">
+<button class="btn btn-primary" @onclick="(() => setUpSim(SIM_TYPE.Tank))">Tank</button>
+<button class="btn btn-primary" @onclick="(() => setUpSim(SIM_TYPE.WindTunnel))">Wind Tunnel</button>
+<button class="btn btn-primary" @onclick="(() => setUpSim(SIM_TYPE.Paint))">Paint</button>
+<button class="btn btn-primary" @onclick="(() => setUpSim(SIM_TYPE.HiresTunnel))">Hires Tunnel</button>
+</div>
+<br>
+<div>
+<label><InputCheckbox @bind-Value="showStreamLines"/>StreamLines</label><br>
+<label><InputCheckbox @bind-Value="showVelocities"/>Velocities</label><br>
+<label><InputCheckbox @bind-Value="showPressure"/>Pressure</label><br>
+<label><InputCheckbox @bind-Value="showSmoke"/>Smoke</label><br>
+<label><InputCheckbox @bind-Value="overRelaxation"/>Over-Relaxation</label><br>
+</div>
 @code {
     public enum SIM_TYPE { Tank, WindTunnel, Paint, HiresTunnel }
 
     [Parameter]
-    public bool showStreamLines { get; set; } = true;
+    public bool showStreamLines { get; set; } = false;
     [Parameter]
     public EventCallback<bool> showStreamLinesChanged { get; set; }
 
@@ -28,11 +30,11 @@
     [Parameter]
     public EventCallback<bool> showPressureChanged { get; set; }
     [Parameter]
-    public bool showSmoke { get; set; } = true;
+    public bool showSmoke { get; set; } = false;
     [Parameter]
     public EventCallback<bool> showSmokeChanged { get; set; }
     [Parameter]
-    public bool overRelaxation { get; set; } = true; // need certain values, not just on/off
+    public bool overRelaxation { get; set; } = false; // need certain values, not just on/off
     [Parameter]
     public EventCallback<bool> overRelaxationChanged { get; set; }
 
