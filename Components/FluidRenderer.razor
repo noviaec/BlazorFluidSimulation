@@ -1,10 +1,38 @@
 
+
+
 @code {
     public void UpdateScene()
     {
         // This method can be used to trigger a re-render of the FluidRenderer component
         // when the simulation state changes.
         StateHasChanged();
+    }
+    public int[] rgbColors(float red, float green, float blue)
+    {
+        return new int[] { (int)(red * 255), (int)(green * 255), (int)(blue * 255) };
+    }
+
+    public int[] scientificColors(float value, float minValue, float maxValue)
+    {
+        value = Math.Clamp(value, minValue, maxValue - 0.0001f);
+        float range = maxValue - minValue;
+        float normalizedValue = range == 0.0f ? 0.5f : (value - minValue) / range;
+        float segmentSize = 0.25f; // 4 segments
+        int segmentIndex = (int)(normalizedValue / segmentSize);
+        float segmentOffset = (normalizedValue - segmentIndex * segmentSize) / segmentSize;
+
+        float r, g, b;
+        switch (segmentIndex)
+        {
+            case 0: r = 0.0f; g = segmentOffset; b = 1.0f; break;
+            case 1: r = 0.0f; g = 1.0f; b = 1.0f - segmentOffset; break;
+            case 2: r = segmentOffset; g = 1.0f; b = 0.0f; break;
+            case 3: r = 1.0f; g = 1.0f - segmentOffset; b = 0.0f; break;
+            default: r = g = b = 1.0f; break; // Fallback color
+        }
+
+        return rgbColors(r, g, b).Append(255).ToArray(); // Add alpha channel
     }
 }
 
@@ -19,25 +47,6 @@
 			${Math.floor(255*r)},
 			${Math.floor(255*g)},
 			${Math.floor(255*b)})`
-	}
-
-	function getSciColor(val, minVal, maxVal) {
-		val = Math.min(Math.max(val, minVal), maxVal- 0.0001);
-		var d = maxVal - minVal;
-		val = d == 0.0 ? 0.5 : (val - minVal) / d;
-		var m = 0.25;
-		var num = Math.floor(val / m);
-		var s = (val - num * m) / m;
-		var r, g, b;
-
-		switch (num) {
-			case 0 : r = 0.0; g = s; b = 1.0; break;
-			case 1 : r = 0.0; g = 1.0; b = 1.0-s; break;
-			case 2 : r = s; g = 1.0; b = 0.0; break;
-			case 3 : r = 1.0; g = 1.0 - s; b = 0.0; break;
-		}
-
-		return[255*r,255*g,255*b, 255]
 	}
 
 	function draw() 
