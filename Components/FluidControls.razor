@@ -5,11 +5,39 @@
 <button @onclick="(() => setUpSim(SIM_TYPE.Paint))">Paint</button>
 <button @onclick="(() => setUpSim(SIM_TYPE.HiresTunnel))">Hires Tunnel</button>
 
+<InputCheckbox @bind-Value="showStreamLines">StreamLines</InputCheckbox>
+<InputCheckbox @bind-Value="showVelocities">Velocities</InputCheckbox>
+<InputCheckbox @bind-Value="showPressure">Pressure</InputCheckbox>
+<InputCheckbox @bind-Value="showSmoke">Smoke</InputCheckbox>
+<InputCheckbox @bind-Value="overRelaxation">Over Relaxation</InputCheckbox>
+
 @code {
     public enum SIM_TYPE { Tank, WindTunnel, Paint, HiresTunnel }
 
     [Parameter]
-    public SIM_TYPE typeSelected  { get; set;}
+    public bool showStreamLines { get; set; } = true;
+    [Parameter]
+    public EventCallback<bool> showStreamLinesChanged { get; set; }
+
+    [Parameter]
+    public bool showVelocities { get; set; } = false;
+    [Parameter]
+    public EventCallback<bool> showVelocitiesChanged { get; set; }
+    [Parameter]
+    public bool showPressure { get; set; } = false;
+    [Parameter]
+    public EventCallback<bool> showPressureChanged { get; set; }
+    [Parameter]
+    public bool showSmoke { get; set; } = true;
+    [Parameter]
+    public EventCallback<bool> showSmokeChanged { get; set; }
+    [Parameter]
+    public bool overRelaxation { get; set; } = true; // need certain values, not just on/off
+    [Parameter]
+    public EventCallback<bool> overRelaxationChanged { get; set; }
+
+    [Parameter]
+    public SIM_TYPE typeSelected { get; set; }
     [Parameter]
     public EventCallback<SIM_TYPE> typeSelectedChanged { get; set; }
     private async Task setUpSim(SIM_TYPE type)
