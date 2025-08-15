@@ -13,6 +13,8 @@
         if (firstRender)
         {
             context2D = await JSRuntime.InvokeAsync<IJSObjectReference>("getCanvasContext2D", htmlCanvas);
+            await context2D.InvokeVoidAsync("setFillStyle", "black");
+            await context2D.InvokeVoidAsync("fillRect", 0, 0, 800, 600);
         }
     }
     public void UpdateScene()

@@ -16,8 +16,17 @@
 <body>
     <Routes />
     <script src="_framework/blazor.web.js">
+    </script>
+    <script>
         window.getCanvasContext2D = (canvas) => {
-            return canvas.getContext("2d");
+            const ctx = canvas.getContext("2d");
+            return {
+                fillRect: (x, y, width, height) => ctx.fillRect(x, y, width, height),
+                clearRect: (x, y, width, height) => ctx.clearRect(x, y, width, height),
+                drawImage: (image, x, y) => ctx.drawImage(image, x, y),
+                setFillStyle: (color) => ctx.fillStyle = color,
+                // Add more methods as needed
+            };
         };
     </script>
 </body>
