@@ -23,12 +23,13 @@
         // when the simulation state changes.
         StateHasChanged();
     }
-    public int[] rgbColors(float red, float green, float blue)
+    public async Task rgbColors(float red, float green, float blue)
     {
-        return new int[] { (int)(red * 255), (int)(green * 255), (int)(blue * 255) };
+        // TODO: Check if context2D is null before invoking methods
+        await context2D.InvokeVoidAsync("setFillStyle", $"rgb({red * 255}, {green * 255}, {blue * 255})");
     }
 
-    public int[] scientificColors(float value, float minValue, float maxValue)
+    public float[] scientificColors(float value, float minValue, float maxValue)
     {
         value = Math.Clamp(value, minValue, maxValue - 0.0001f);
         float range = maxValue - minValue;
@@ -47,7 +48,13 @@
             default: red = green = blue = 1.0f; break; // Fallback color
         }
 
-        return rgbColors(red, green, blue).Append(255).ToArray(); // Add alpha channel
+        return [255.0f*red, 255.0f*green, 255.0f*blue, 255]; // Add alpha channel
+    }
+
+    public async Task draw() 
+    {
+        await context2D.InvokeVoidAsync("clearRect", 0, 0, 800, 600);
+        await context2D.InvokeVoidAsync("setFillStyle", "#FF0000");
     }
 }
 
