@@ -25,6 +25,15 @@
                 clearRect: (x, y, width, height) => ctx.clearRect(x, y, width, height),
                 drawImage: (image, x, y) => ctx.drawImage(image, x, y),
                 setFillStyle: (color) => ctx.fillStyle = color,
+                setStrokeStyle: (color) => ctx.strokeStyle = color,
+                strokeRect: (x, y, width, height) => ctx.strokeRect(x, y, width, height),
+                beginPath: () => ctx.beginPath(),
+                moveTo: (x, y) => ctx.moveTo(x, y),
+                lineTo: (x, y) => ctx.lineTo(x, y),
+                stroke: () => ctx.stroke(),
+                arc: (x, y, radius, startAngle, endAngle) => ctx.arc(x, y, radius, startAngle, endAngle),
+                getImageData: (x, y, width, height) => ctx.getImageData(x, y, width, height),
+                putImageData: (imageData, x, y) => ctx.putImageData(imageData, x, y),
                 // Add more methods as needed
             };
         };
