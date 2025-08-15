@@ -1,7 +1,20 @@
+@inject IJSRuntime JSRuntime;
 
+<canvas @ref="htmlCanvas" width="800" height="600"></canvas>
 
 
 @code {
+
+    public ElementReference htmlCanvas;
+    public IJSObjectReference? context2D;
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            context2D = await JSRuntime.InvokeAsync<IJSObjectReference>("getCanvasContext2D", htmlCanvas);
+        }
+    }
     public void UpdateScene()
     {
         // This method can be used to trigger a re-render of the FluidRenderer component
@@ -22,17 +35,17 @@
         int segmentIndex = (int)(normalizedValue / segmentSize);
         float segmentOffset = (normalizedValue - segmentIndex * segmentSize) / segmentSize;
 
-        float r, g, b;
+        float red, green, blue;
         switch (segmentIndex)
         {
-            case 0: r = 0.0f; g = segmentOffset; b = 1.0f; break;
-            case 1: r = 0.0f; g = 1.0f; b = 1.0f - segmentOffset; break;
-            case 2: r = segmentOffset; g = 1.0f; b = 0.0f; break;
-            case 3: r = 1.0f; g = 1.0f - segmentOffset; b = 0.0f; break;
-            default: r = g = b = 1.0f; break; // Fallback color
+            case 0: red = 0.0f; green = segmentOffset; blue = 1.0f; break;
+            case 1: red = 0.0f; green = 1.0f; blue = 1.0f - segmentOffset; break;
+            case 2: red = segmentOffset; green = 1.0f; blue = 0.0f; break;
+            case 3: red = 1.0f; green = 1.0f - segmentOffset; blue = 0.0f; break;
+            default: red = green = blue = 1.0f; break; // Fallback color
         }
 
-        return rgbColors(r, g, b).Append(255).ToArray(); // Add alpha channel
+        return rgbColors(red, green, blue).Append(255).ToArray(); // Add alpha channel
     }
 }
 
@@ -63,13 +76,16 @@
 
 		minP = f.p[0];
 		maxP = f.p[0];
-
-		for (var i = 0; i < f.numCells; i++) {
-			minP = Math.min(minP, f.p[i]);
+using System.Formats.Tar;
+#line default
+#line hidden
+inP = Math.min(minP, f.p[i]);
 			maxP = Math.max(maxP, f.p[i]);
-		}
-
-		id = c.getImageData(0,0, canvas.width, canvas.height)
+		}uusing System.Reflection.Metadata;
+#line default
+#line hidden
+e hidden
+ = c.getImageData(0,0, canvas.width, canvas.height)
 
 		var color = [255, 255, 255, 255]
 

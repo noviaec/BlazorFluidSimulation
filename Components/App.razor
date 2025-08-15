@@ -15,7 +15,11 @@
 
 <body>
     <Routes />
-    <script src="_framework/blazor.web.js"></script>
+    <script src="_framework/blazor.web.js">
+        window.getCanvasContext2D = (canvas) => {
+            return canvas.getContext("2d");
+        };
+    </script>
 </body>
 
 </html>
